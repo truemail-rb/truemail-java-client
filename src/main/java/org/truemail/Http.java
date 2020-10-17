@@ -1,11 +1,11 @@
 package org.truemail;
 
+import org.json.JSONObject;
+import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Http {
@@ -40,14 +40,28 @@ public class Http {
         return token;
     }
 
-    public void run (String email) throws IOException {
-        URL url = new URL(uri(email));
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        headers().forEach(con::setRequestProperty);
+    public String run (String email) {
+        try {
+            URL url = new URL(uri(email));
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            headers().forEach(con::setRequestProperty);
 
-        con.getResponseCode();
-        con.getResponseMessage();
+            if ( con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+                return con.getResponseMessage();
+            } else {
+                JSONObject error = new JSONObject();
+                JSONObject response = new JSONObject();
+                response.put("responseCode", con.getResponseCode());
+                response.put("responseBody", con.getResponseMessage());
+                error.put("error", response);
+                return error.toString();
+            }
+        } catch (IOException e) {
+            JSONObject error = new JSONObject();
+            error.put("error", e.toString());
+            return error.toString();
+        }
     }
 
     private String uri(String email) {
