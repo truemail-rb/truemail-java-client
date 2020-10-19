@@ -1,4 +1,4 @@
-package org.truemail;
+package org.truemail.client;
 
 import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
@@ -54,12 +54,12 @@ public class Http {
                 JSONObject response = new JSONObject();
                 response.put("responseCode", con.getResponseCode());
                 response.put("responseBody", con.getResponseMessage());
-                error.put("error", response);
+                error.put("truemail_client_error:", response);
                 return error.toString();
             }
         } catch (IOException e) {
             JSONObject error = new JSONObject();
-            error.put("error", e.toString());
+            error.put("truemail_client_error", e.toString());
             return error.toString();
         }
     }
