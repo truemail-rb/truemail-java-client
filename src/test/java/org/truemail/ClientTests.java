@@ -11,7 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import static junit.framework.Assert.assertEquals;
-import static org.powermock.api.mockito.PowerMockito.*;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
+import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Client.class})
