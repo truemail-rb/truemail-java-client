@@ -26,7 +26,7 @@ public class ClientTests {
         when(huc.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
         when(huc.getResponseMessage()).thenReturn("Be Nice");
 
-        Configuration config = new Configuration(true, "test.host", 12345,  "2000");
+        Configuration config = new Configuration(true, "test.host",  "2000", 12345);
         Client client = new Client(config);
         String response = client.validate("test.email@com");
 
@@ -38,10 +38,9 @@ public class ClientTests {
         URL u = mock(URL.class);
         String url = "https://test.host:12345?email=test.email";
         whenNew(URL.class).withArguments(url).thenReturn(u);
-        HttpURLConnection huc = mock(HttpURLConnection.class);
         when(u.openConnection()).thenThrow(new IOException());
 
-        Configuration config = new Configuration(true, "test.host", 12345,  "2000");
+        Configuration config = new Configuration(true, "test.host", "2000", 12345);
         Client client = new Client(config);
         String response = client.validate("test.email");
 
@@ -58,7 +57,7 @@ public class ClientTests {
         when(huc.getResponseCode()).thenReturn(HttpURLConnection.HTTP_INTERNAL_ERROR);
         when(huc.getResponseMessage()).thenReturn("Something went wrong");
 
-        Configuration config = new Configuration(true, "test.host", 12345,  "2000");
+        Configuration config = new Configuration(true, "test.host",  "2000",  12345);
         Client client = new Client(config);
         String response = client.validate("test.email");
 

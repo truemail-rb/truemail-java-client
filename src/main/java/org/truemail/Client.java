@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Client {
-    public static String USER_AGENT = "Truemail Crystal client";
+    public static String USER_AGENT = "Truemail Java client";
     public static String MIME_TYPE = "application/json";
 
     private Configuration configuration;
@@ -59,13 +59,11 @@ public class Client {
     }
 
     private Map<String, String> headers() {
-        return new HashMap<String, String>() {
-            {
-                put("User-Agent", USER_AGENT);
-                put("Accept", MIME_TYPE);
-                put("Content-Type", MIME_TYPE);
-                put("Authorization", configuration.getToken());
-            }
-        };
+        HashMap<String, String> headers =  new HashMap<>();
+        headers.put("User-Agent", USER_AGENT);
+        headers.put("Accept", MIME_TYPE);
+        headers.put("Content-Type", MIME_TYPE);
+        headers.put("Authorization", this.configuration.getToken());
+        return headers;
     }
 }

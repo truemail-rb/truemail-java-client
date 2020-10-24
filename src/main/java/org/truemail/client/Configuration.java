@@ -8,7 +8,7 @@ public class Configuration {
     private int port;
     private String token;
 
-    public Configuration(boolean secureConnection, String host, int port, String token) {
+    public Configuration(boolean secureConnection, String host, String token, int port) {
         this.secureConnection = secureConnection;
         this.host = host;
         this.port = port;
@@ -19,6 +19,7 @@ public class Configuration {
         this.host = host;
         this.secureConnection = secureConnection;
         this.token = token;
+        this.port = DEFAULT_PORT;
     }
 
     public boolean isSecureConnection() {
