@@ -4,7 +4,10 @@ import org.json.JSONObject;
 import org.truemail.client.Configuration;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
@@ -15,6 +18,13 @@ public class Client {
     public static String MIME_TYPE = "application/json";
 
     private Configuration configuration;
+
+    public static void main(String[] args) {
+        Configuration config = new Configuration(false, "localhost",  "my_token", 9292);
+        Client client  = new Client(config);
+        String response = client.validate("test.email@google.com");
+        System.out.println(response);
+    }
 
     public Client(Configuration configuration) {
       this.configuration = configuration;
@@ -28,12 +38,12 @@ public class Client {
             headers().forEach(con::setRequestProperty);
 
             if ( con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
-                return con.getResponseMessage();
+                return getResponseBody(con.getInputStream());
             } else {
                 JSONObject error = new JSONObject();
                 JSONObject response = new JSONObject();
                 response.put("responseCode", con.getResponseCode());
-                response.put("responseBody", con.getResponseMessage());
+                response.put("responseBody", getResponseBody(con.getErrorStream()));
                 error.put("truemail_client_error:", response);
                 return error.toString();
             }
@@ -42,6 +52,16 @@ public class Client {
             error.put("truemail_client_error", e.toString());
             return error.toString();
         }
+    }
+
+    private String getResponseBody(InputStream inputStream) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder sb = new StringBuilder();
+        String output;
+        while ((output = br.readLine()) != null) {
+            sb.append(output);
+        }
+        return sb.toString();
     }
 
     private String uri(String email) {
