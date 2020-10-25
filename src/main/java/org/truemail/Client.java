@@ -19,13 +19,6 @@ public class Client {
 
     private Configuration configuration;
 
-    public static void main(String[] args) {
-        Configuration config = new Configuration(false, "localhost",  "my_token", 9292);
-        Client client  = new Client(config);
-        String response = client.validate("test.email@google.com");
-        System.out.println(response);
-    }
-
     public Client(Configuration configuration) {
       this.configuration = configuration;
     }
