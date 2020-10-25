@@ -21,6 +21,23 @@
         </license>
     </licenses>
 
+   <developers>
+       <developer>
+           <name>Viacheslav Miroshnychenko</name>
+           <email>miroshni4encko.slavikk@gmail.com</email>
+       </developer>
+       <developer>
+           <name>Vladislav Trotsenko</name>
+           <email>admin@bestweb.com.ua</email>
+       </developer>
+   </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/truemail-rb/truemail-java-client.git</connection>
+        <developerConnection>scm:git:git@github.com:truemail-rb/truemail-java-client.git</developerConnection>
+        <url>http://github.com/truemail-rb/truemail-java-client</url>
+    </scm>
+
     <properties>
         <!-- Application properties -->
         <build.version>${project.version}</build.version>
