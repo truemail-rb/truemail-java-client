@@ -1,13 +1,17 @@
-![Truemail web API client library for Java](https://truemail-rb.org/assets/images/truemail_logo.png)
+# ![Truemail web API client library for Java](https://truemail-rb.org/assets/images/truemail_logo.png)
 
-[![Gitter](https://badges.gitter.im/truemail-rb/community.svg)](https://gitter.im/truemail-rb/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/truemail-rb/truemail-java-client) [![CircleCI](https://circleci.com/gh/truemail-rb/truemail-java-client/tree/develop.svg?style=svg)](https://circleci.com/gh/truemail-rb/truemail-java-client/tree/develop) [![Gitter](https://badges.gitter.im/truemail-rb/community.svg)](https://gitter.im/truemail-rb/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 `truemail-java-client` - Truemail web API client library for Java.
+
+> Actual and maintainable documentation :books: for developers is living [here](https://truemail-rb.org/truemail-java-client).
 
 ## Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Maven](#maven)
+  - [Gradle](#gradle)
 - [Usage](#usage)
   - [Creating configuration instance](#creating-configuration-instance)
   - [Establishing connection with Truemail API](#establishing-connection-with-truemail-api)
@@ -22,13 +26,13 @@
 
 ## Requirements
 
-Java version 1.8+.
+Java 1.8+
 
 ## Installation
 
-Get the latest version [here](https://github.com/truemail-rb/truemail-java-client/releases)
+All available versions you can find [here](https://github.com/truemail-rb/truemail-java-client/releases).
 
-### Maven 
+### Maven
 
 ```xml
 <dependency>
@@ -41,48 +45,51 @@ Get the latest version [here](https://github.com/truemail-rb/truemail-java-clien
 ### Gradle
 
 ```groovy
-compile group: 'org.truemail', name: 'truemail-java-client', version: 'for latest see link above'
+compile group: 'org.truemail', name: 'truemail-java-client', version: 'version'
 ```
 
 ## Usage
-
 
 ```java
 import org.truemail.Client;
 import org.truemail.client.Configuration;
 ```
 
-To use `Client#validate` you must create configuration instance first as in the example below: -->
+To have an access for `Client#validate` you must create configuration instance first as in the example below:
 
 ### Creating configuration instance
 
 ```java
+// Required parameter. It should be true or false
 boolean secureConnection = true;
 
-# Required parameter. It should be a hostname or an ip address where Truemail server runs
-String host = "localhost";
+// Required parameter. It should be a hostname or an ip address where Truemail server runs
+String host = "example.com";
 
-# Optional parameter. By default it is equal 9292
-int port  = "80"; 
+// Optional parameter. By default it is equal 9292
+int port = 80;
 
-# Required parameter. It should be valid Truemail server access token
-String token  = "your_token"; 
+// Required parameter. It should be valid Truemail server access token
+String token = "token";
 
-Configuration config = new Configuration(secureConnection, host, token, port);
-``` 
+Configuration configuration = new Configuration(secureConnection, host, token, port);
+
+// or without port, will be used 9292 port by default
+// Configuration configuration = new Configuration(secureConnection, host, token);
+```
 
 ### Establishing connection with Truemail API
 
 After successful configuration, you can establish connection with Truemail server.
 
 ```java
-Client client =  new Client(configuration);
+Client client = new Client(configuration);
 client.validate("admin@bestweb.com.ua")
 
 =>
 
 {
-  "date": "2020-05-05 19:30:42 +0200",
+  "date": "2020-10-26 10:42:42 +0200",
   "email": "admin@bestweb.com.ua",
   "validation_type": "smtp",
   "success": true,
@@ -116,7 +123,7 @@ All Truemail solutions: https://truemail-rb.org
 
 | Name | Type | Description |
 | --- | --- | --- |
-| [truemail](https://github.com/rubygarage/truemail) | ruby gem | Configurable plain Ruby email validator, main core |
+| [truemail](https://github.com/truemail-rb/truemail) | ruby gem | Configurable plain Ruby email validator, main core |
 | [truemail server](https://github.com/truemail-rb/truemail-rack) | ruby app | Lightweight rack based web API wrapper for Truemail |
 | [truemail-rack-docker](https://github.com/truemail-rb/truemail-rack-docker-image) | docker image | Lightweight rack based web API [dockerized image](https://hub.docker.com/r/truemail/truemail-rack) :whale: of Truemail server |
 | [truemail-ruby-client](https://github.com/truemail-rb/truemail-ruby-client) | ruby gem | Web API Ruby client for Truemail Server |
