@@ -22,50 +22,62 @@
 
 ## Requirements
 
-<!-- TODO: Add requirements details -->
+Java version 1.8+.
 
 ## Installation
 
-<!-- TODO: Add installation details -->
+Get the latest version [here](https://github.com/truemail-rb/truemail-java-client/releases)
+
+### Maven 
+
+```xml
+<dependency>
+  <groupId>org.truemail</groupId>
+  <artifactId>truemail-java-client</artifactId>
+  <version>${version}</version>
+</dependency>
+```
+
+### Gradle
+
+```groovy
+compile group: 'org.truemail', name: 'truemail-java-client', version: 'for latest see link above'
+```
 
 ## Usage
 
-<!-- TODO: Add usage details
 
-```crystal
-require "truemail-client"
+```java
+import org.truemail.Client;
+import org.truemail.client.Configuration;
 ```
 
-To have an access for `Truemail::Client` you must create configuration instance first as in the example below: -->
+To use `Client#validate` you must create configuration instance first as in the example below: -->
 
 ### Creating configuration instance
 
-<!-- TODO: Add creating configuration details
+```java
+boolean secureConnection = true;
 
-```crystal
-configuration = Truemail::Client::Configuration.new do |config|
-  # Optional parameter (Boolean). By default it is equal false
-  config.secure_connection = false
+# Required parameter. It should be a hostname or an ip address where Truemail server runs
+String host = "localhost";
 
-  # Required parameter (String). It should be a hostname or an ip address where Truemail server runs
-  config.host = "example.com"
+# Optional parameter. By default it is equal 9292
+int port  = "80"; 
 
-  # Optional parameter (Int32). By default it is equal 9292
-  config.port = 80
+# Required parameter. It should be valid Truemail server access token
+String token  = "your_token"; 
 
-  # Required parameter (String). It should be valid Truemail server access token
-  config.token = "token"
-end
-``` -->
+Configuration config = new Configuration(secureConnection, host, token, port);
+``` 
 
 ### Establishing connection with Truemail API
 
 After successful configuration, you can establish connection with Truemail server.
 
-<!-- TODO: Add java example
-
 ```java
-Truemail::Client.validate("admin@bestweb.com.ua", configuration)
+Client client =  new Client(configuration);
+client.validate("admin@bestweb.com.ua")
 
 =>
 
@@ -88,13 +100,13 @@ Truemail::Client.validate("admin@bestweb.com.ua", configuration)
 }
 ```
 
-`Truemail::Client.validate` always returns JSON data. If something goes wrong you will receive JSON with error details:
+`Client#validate` always returns JSON data. If something goes wrong you will receive JSON with error details:
 
 ```json
 {
   "truemail_client_error": "error details"
 }
-``` -->
+```
 
 ---
 
