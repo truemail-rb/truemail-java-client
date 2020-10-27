@@ -51,11 +51,11 @@ compile group: 'org.truemail', name: 'truemail-java-client', version: 'version'
 ## Usage
 
 ```java
-import org.truemail.Client;
-import org.truemail.client.Configuration;
+import org.truemail.TruemailClient;
+import org.truemail.client.TruemailConfiguration;
 ```
 
-To have an access for `Client#validate` you must create configuration instance first as in the example below:
+To have an access for `TruemailClient#validate` you must create configuration instance first as in the example below:
 
 ### Creating configuration instance
 
@@ -72,10 +72,10 @@ int port = 80;
 // Required parameter. It should be valid Truemail server access token
 String token = "token";
 
-Configuration configuration = new Configuration(secureConnection, host, token, port);
+TruemailConfiguration truemailConfiguration = new TruemailConfiguration(secureConnection, host, token, port);
 
 // or without port, will be used 9292 port by default
-// Configuration configuration = new Configuration(secureConnection, host, token);
+// TruemailConfiguration truemailConfiguration = new TruemailConfiguration(secureConnection, host, token);
 ```
 
 ### Establishing connection with Truemail API
@@ -83,8 +83,8 @@ Configuration configuration = new Configuration(secureConnection, host, token, p
 After successful configuration, you can establish connection with Truemail server.
 
 ```java
-Client client = new Client(configuration);
-client.validate("admin@bestweb.com.ua")
+TruemailClient truemailClient = new TruemailClient(truemailConfiguration);
+truemailClient.validate("admin@bestweb.com.ua")
 
 =>
 
@@ -107,7 +107,7 @@ client.validate("admin@bestweb.com.ua")
 }
 ```
 
-`Client#validate` always returns JSON data. If something goes wrong you will receive JSON with error details:
+`TruemailClient#validate` always returns JSON data. If something goes wrong you will receive JSON with error details:
 
 ```json
 {

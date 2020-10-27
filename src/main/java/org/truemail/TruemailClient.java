@@ -1,7 +1,7 @@
 package org.truemail;
 
 import org.json.JSONObject;
-import org.truemail.client.Configuration;
+import org.truemail.client.TruemailConfiguration;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -13,14 +13,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Client {
+public class TruemailClient {
     public static String USER_AGENT = "Truemail Java client";
     public static String MIME_TYPE = "application/json";
 
-    private Configuration configuration;
+    private TruemailConfiguration truemailConfiguration;
 
-    public Client(Configuration configuration) {
-      this.configuration = configuration;
+    public TruemailClient(TruemailConfiguration truemailConfiguration) {
+      this.truemailConfiguration = truemailConfiguration;
     }
 
     public String validate (String email) {
@@ -59,12 +59,12 @@ public class Client {
 
     private String uri(String email) {
         StringBuilder result = new StringBuilder();
-        String protocol = this.configuration.isSecureConnection() ? "https" : "http";
+        String protocol = this.truemailConfiguration.isSecureConnection() ? "https" : "http";
         result.append(protocol);
         result.append("://");
-        result.append(this.configuration.getHost());
+        result.append(this.truemailConfiguration.getHost());
         result.append(":");
-        result.append(this.configuration.getPort());
+        result.append(this.truemailConfiguration.getPort());
         result.append("?email=");
         result.append(email);
 
@@ -76,7 +76,7 @@ public class Client {
         headers.put("User-Agent", USER_AGENT);
         headers.put("Accept", MIME_TYPE);
         headers.put("Content-Type", MIME_TYPE);
-        headers.put("Authorization", this.configuration.getToken());
+        headers.put("Authorization", this.truemailConfiguration.getToken());
         return headers;
     }
 }
