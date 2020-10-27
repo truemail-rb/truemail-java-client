@@ -1,6 +1,6 @@
 package org.truemail.client;
 
-public class Configuration {
+public class TruemailConfiguration {
     public static int DEFAULT_PORT = 9292;
 
     private boolean secureConnection;
@@ -8,14 +8,14 @@ public class Configuration {
     private int port;
     private String token;
 
-    public Configuration(boolean secureConnection, String host, String token, int port) {
+    public TruemailConfiguration(boolean secureConnection, String host, String token, int port) {
         this.secureConnection = secureConnection;
         this.host = host;
         this.port = port;
         this.token = token;
     }
 
-    public Configuration(boolean secureConnection, String host, String token) {
+    public TruemailConfiguration(boolean secureConnection, String host, String token) {
         this.host = host;
         this.secureConnection = secureConnection;
         this.token = token;

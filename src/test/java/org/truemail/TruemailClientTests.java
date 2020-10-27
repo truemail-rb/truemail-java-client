@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.truemail.client.Configuration;
+import org.truemail.client.TruemailConfiguration;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -18,8 +18,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Client.class})
-public class ClientTests {
+@PrepareForTest({TruemailClient.class})
+public class TruemailClientTests {
     @Test
     public void validateReturnsSuccessResponseWhenValidEmail() throws Exception {
         URL u = mock(URL.class);
@@ -37,9 +37,9 @@ public class ClientTests {
 
         when(huc.getInputStream()).thenReturn(new ByteArrayInputStream(expectedResponse.getBytes()));
 
-        Configuration config = new Configuration(false, "localhost",  "my_token");
-        Client client = new Client(config);
-        String response = client.validate("test.email@google.com");
+        TruemailConfiguration config = new TruemailConfiguration(false, "localhost",  "my_token");
+        TruemailClient truemailClient = new TruemailClient(config);
+        String response = truemailClient.validate("test.email@google.com");
 
         assertEquals(expectedResponse, response);
     }
@@ -51,9 +51,9 @@ public class ClientTests {
         whenNew(URL.class).withArguments(url).thenReturn(u);
         when(u.openConnection()).thenThrow(new IOException());
 
-        Configuration config = new Configuration(true, "test.host", "2000", 12345);
-        Client client = new Client(config);
-        String response = client.validate("test.email");
+        TruemailConfiguration config = new TruemailConfiguration(true, "test.host", "2000", 12345);
+        TruemailClient truemailClient = new TruemailClient(config);
+        String response = truemailClient.validate("test.email");
 
         assertEquals("{\"truemail_client_error\":\"java.io.IOException\"}", response);
     }
@@ -68,10 +68,10 @@ public class ClientTests {
         when(huc.getResponseCode()).thenReturn(HttpURLConnection.HTTP_INTERNAL_ERROR);
         when(huc.getErrorStream()).thenReturn(new ByteArrayInputStream("Something went wrong".getBytes()));
 
-        Configuration config = new Configuration(true, "test.host",  "2000",  12345);
-        Client client = spy(new Client(config));
+        TruemailConfiguration config = new TruemailConfiguration(true, "test.host",  "2000",  12345);
+        TruemailClient truemailClient = spy(new TruemailClient(config));
 
-        String response = client.validate("test.email");
+        String response = truemailClient.validate("test.email");
 
         assertEquals(
                 "{\"truemail_client_error:\":{\"responseBody\":\"Something went wrong\",\"responseCode\":500}}",
