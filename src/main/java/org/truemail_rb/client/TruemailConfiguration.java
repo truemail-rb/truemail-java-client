@@ -1,4 +1,4 @@
-package org.truemail.client;
+package org.truemail_rb.client;
 
 public class TruemailConfiguration {
     public static int DEFAULT_PORT = 9292;
