@@ -1,10 +1,10 @@
-package org.truemail;
+package org.truemail_rb;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.truemail.client.TruemailConfiguration;
+import org.truemail_rb.client.TruemailConfiguration;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

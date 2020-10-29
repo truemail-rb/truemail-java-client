@@ -1,7 +1,7 @@
-package org.truemail;
+package org.truemail_rb;
 
 import org.json.JSONObject;
-import org.truemail.client.TruemailConfiguration;
+import org.truemail_rb.client.TruemailConfiguration;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;

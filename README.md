@@ -36,7 +36,7 @@ All available versions you can find [here](https://github.com/truemail-rb/truema
 
 ```xml
 <dependency>
-  <groupId>org.truemail</groupId>
+  <groupId>org.truemail-rb</groupId>
   <artifactId>truemail-java-client</artifactId>
   <version>${version}</version>
 </dependency>
@@ -45,14 +45,14 @@ All available versions you can find [here](https://github.com/truemail-rb/truema
 ### Gradle
 
 ```groovy
-compile group: 'org.truemail', name: 'truemail-java-client', version: 'version'
+compile group: 'org.truemail-rb', name: 'truemail-java-client', version: 'version'
 ```
 
 ## Usage
 
 ```java
-import org.truemail.TruemailClient;
-import org.truemail.client.TruemailConfiguration;
+import org.truemail_rb.TruemailClient;
+import org.truemail_rb.client.TruemailConfiguration;
 ```
 
 To have an access for `TruemailClient#validate` you must create configuration instance first as in the example below:
