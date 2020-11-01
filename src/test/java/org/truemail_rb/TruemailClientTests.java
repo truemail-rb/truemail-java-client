@@ -23,7 +23,7 @@ public class TruemailClientTests {
     @Test
     public void validateReturnsSuccessResponseWhenValidEmail() throws Exception {
         URL u = mock(URL.class);
-        String url = "http://localhost:9292?email=test.email@google.com";
+        String url = "http://localhost:9292?email=test.email%40google.com";
         whenNew(URL.class).withArguments(url).thenReturn(u);
         HttpURLConnection huc = mock(HttpURLConnection.class);
         when(u.openConnection()).thenReturn(huc);

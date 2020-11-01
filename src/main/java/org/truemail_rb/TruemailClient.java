@@ -8,8 +8,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,18 +59,26 @@ public class TruemailClient {
         return sb.toString();
     }
 
-    private String uri(String email) {
-        StringBuilder result = new StringBuilder();
-        String protocol = this.truemailConfiguration.isSecureConnection() ? "https" : "http";
-        result.append(protocol);
-        result.append("://");
-        result.append(this.truemailConfiguration.getHost());
-        result.append(":");
-        result.append(this.truemailConfiguration.getPort());
-        result.append("?email=");
-        result.append(email);
+    private String uri(String email) throws UnsupportedEncodingException {
+        return getPath() + getEncodedParams(email);
+    }
 
-        return result.toString();
+    private String getPath(){
+        StringBuilder path = new StringBuilder();
+        String protocol = this.truemailConfiguration.isSecureConnection() ? "https" : "http";
+        path.append(protocol);
+        path.append("://");
+        path.append(this.truemailConfiguration.getHost());
+        path.append(":");
+        path.append(this.truemailConfiguration.getPort());
+        return path.toString();
+    }
+
+    private String getEncodedParams(String email) throws UnsupportedEncodingException {
+        // This way of encoding looks strange, but there is no other way in vanilla java
+        // See https://stackoverflow.com/questions/444112/how-do-i-encode-uri-parameter-values
+        return "?email=" + URLEncoder.encode(email, "UTF-8")
+                .replaceAll("\\+", "%20");
     }
 
     private Map<String, String> headers() {
