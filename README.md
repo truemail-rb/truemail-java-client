@@ -1,8 +1,12 @@
 # ![Truemail web API client library for Java](https://truemail-rb.org/assets/images/truemail_logo.png)
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/truemail-rb/truemail-java-client) [![CircleCI](https://circleci.com/gh/truemail-rb/truemail-java-client/tree/develop.svg?style=svg)](https://circleci.com/gh/truemail-rb/truemail-java-client/tree/develop) [![Gitter](https://badges.gitter.im/truemail-rb/community.svg)](https://gitter.im/truemail-rb/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+[![CircleCI](https://circleci.com/gh/truemail-rb/truemail-java-client/tree/develop.svg?style=svg)](https://circleci.com/gh/truemail-rb/truemail-java-client/tree/develop)
+[![Maven Central](https://img.shields.io/maven-central/v/org.truemail-rb/truemail-java-client.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.truemail-rb%22%20AND%20a:%22truemail-java-client%22)
+[![GitHub](https://img.shields.io/github/license/truemail-rb/truemail-java-client)](LICENSE.txt)
+[![Gitter](https://badges.gitter.im/truemail-rb/community.svg)](https://gitter.im/truemail-rb/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
-`truemail-java-client` - Truemail web API client library for Java.
+`truemail-java-client` - Web API Java client for Truemail Server.
 
 > Actual and maintainable documentation :books: for developers is living [here](https://truemail-rb.org/truemail-java-client).
 
@@ -30,22 +34,36 @@ Java 1.8+
 
 ## Installation
 
-All available versions you can find [here](https://github.com/truemail-rb/truemail-java-client/releases).
+> Please change {version} to needed version, for example 0.1.0. All available versions you can find [here](https://github.com/truemail-rb/truemail-java-client/releases).
 
-### Maven
+### Apache Maven
 
 ```xml
 <dependency>
   <groupId>org.truemail-rb</groupId>
   <artifactId>truemail-java-client</artifactId>
-  <version>${version}</version>
+  <version>{version}</version>
 </dependency>
 ```
 
-### Gradle
+### Gradle Groovy
 
 ```groovy
-compile group: 'org.truemail-rb', name: 'truemail-java-client', version: 'version'
+implementation 'org.truemail-rb:truemail-java-client:{version}'
+```
+
+### Apache Ivy
+
+```xml
+<dependency org="org.truemail-rb" name="truemail-java-client" rev="{version}" />
+```
+
+### Groovy Grape
+
+```groovy
+@Grapes(
+  @Grab(group='org.truemail-rb', module='truemail-java-client', version='{version}')
+)
 ```
 
 ## Usage
