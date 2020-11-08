@@ -1,6 +1,9 @@
 # PR Details
 
 <!-- Provide a general summary of your changes in the Title above -->
+<!-- PR name should the same name as your branch name, example: -->
+<!-- Branch name is: feature/add-some-feature -->
+<!-- PR name should be: Feature/Add some feature -->
 
 ## Description
 
@@ -42,5 +45,3 @@
 - [ ] I have updated the documentation accordingly
 - [ ] I have read the [**CONTRIBUTING** document](../CONTRIBUTING.md)
 - [ ] I have added tests to cover my changes
-- [ ] I have run `bundle exec rspec` from the root directory to see all new and existing tests pass
-- [ ] I have run `rubocop` and `reek` to ensure the code style is valid
