@@ -1,11 +1,12 @@
+version: 2.1
+
 defaults: &defaults
   working_directory: ~/truemail-java-client
   docker:
-    - image: circleci/openjdk:8-jdk-browsers
+    - image: cimg/openjdk:8.0-browsers
   environment:
     RULESET: pmd-ruleset.xml
 
-version: 2
 jobs:
   linters:
     <<: *defaults
@@ -67,7 +68,6 @@ jobs:
           command: mvn test
 
 workflows:
-  version: 2
   build:
     jobs:
       - linters
